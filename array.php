@@ -101,7 +101,7 @@
       ) 
  </pre>
     <p>
-        Esse tipode Array (chave e valor) funciona da mesma 
+        Esse tipo de Array (chave e valor) funciona da mesma 
         forma porem não existem mais os indices com números pasando a usar string com chaves para valores.
     </p>
 
@@ -160,7 +160,7 @@ echo "Apenas Chave: ".$Chave."<br>";
 ?>
 
 
-     
+</div> 
     <script src="bootstrap.bundle.min.js"></script>
 </body>
 </html
