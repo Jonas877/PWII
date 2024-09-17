@@ -1,7 +1,7 @@
 
 <?php
      
-  $nome = "JONAS SILVA JATOBA";      
+  $nomes = "JONAS SILVA JATOBA";      
   "MARCOS VINÍCIUS SANCHES CARDOSO";     
   "MARIANA DOS SANTOS";      
   "MATHEUS MARQUEZIM GENEBRA";      
@@ -23,6 +23,12 @@
   echo "</h1>";
 
   
+  function sortearVencedor($nomes) {
+    return $nomes[array_rand($nomes, 1)] ?? "Nenhum nome na lista.";
+ }
 
-?>
+ $vencedor = sortearVencedor($nomes);
+ echo "O vencedor é: " . $vencedor;
+
+ ?>
 
