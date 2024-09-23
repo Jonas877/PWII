@@ -35,13 +35,17 @@ echo "<h1> Exercício 3 </h1>";
 $numero = rand(584, 1970); 
 
 for ($numero = 584; $numero <= 1970; $numero++) {
-    echo "Número: $numero";
-    
+    echo "<br>";
+    echo "Número: $numero"; 
+    echo "<br>";
+ 
+
     if ($numero % 2 == 0) {
         echo " é Par";
-    }    
+        echo "<br>";
+    }      
 }
- echo "<br>";
+ echo "<hr>";
  ?>  
  
  
