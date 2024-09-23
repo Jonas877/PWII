@@ -39,7 +39,6 @@ for ($numero = 584; $numero <= 1970; $numero++) {
     echo "Número: $numero"; 
     echo "<br>";
  
-
     if ($numero % 2 == 0) {
         echo " é Par";
         echo "<br>";
