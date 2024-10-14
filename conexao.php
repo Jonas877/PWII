@@ -5,7 +5,7 @@ $senha = "";
 $banco = "PW_BD"; 
 
 $script = "
-    CREATE DATABASE PWII_BD;
+    CREATE DATABASE PW_BD;
     USE PW_BD;
     CREATE TABLE PRODUTOS (
         ID INT PRIMARY KEY AUTO_INCREMENT,
@@ -39,7 +39,7 @@ $script = "
     ('Secador de Cabelo - 2200W', 199.90, '1234567890141', 1),
     ('Jogo de Lençóis - 150 Fios', 159.90, '1234567890142', 1);
 
-    
+   
 ";
 
 $conexao = new mysqli($servidor, $usuario, $senha, $banco);
