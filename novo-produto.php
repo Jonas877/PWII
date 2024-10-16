@@ -8,7 +8,6 @@
       )
     {
         
-
         $datavalidade = $_POST["datavalidade"];
 
         if( empty($_POST["nome"]) )
