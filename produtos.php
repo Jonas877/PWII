@@ -1,4 +1,4 @@
-<?php include "cabecario.php"?>
+<?php include "cabecalho.php"?>
 <?php
         if(isset($_GET["pesquisa"]))
         {
@@ -15,7 +15,7 @@
         }else
         {
             $pesquisa="";
-            /*include "conexao.php";
+            include "conexao.php";
             $sql = "select id,descricao,valor from produtos order by id desc";
             $resultado  = $conexao -> query($sql);
             if($resultado->num_rows>0){
@@ -25,13 +25,13 @@
                     echo"<td>".$row["descricao"]."</td>";
                     echo"<td>".$row["valor"]."</td>";
                     echo"<tb><a href='editar_produto.php?id=$row[id]' class='btn btn-warning'>Editar</a>";
-                    echo"<a class='btn btn-danger'>Excluir</a></td>";
+                    echo"<a href='excluir_produto.php?id=$row[id]' class='btn btn-danger'>Excluir</a></td>";
                     echo"</tr>";
                 }
             }else{
                 echo "<tr><td colspan='3'>Nenhum registro encontrado</td></tr>";
             }
-            $conexao->close();*/
+            $conexao->close();
         } 
 
 ?>
