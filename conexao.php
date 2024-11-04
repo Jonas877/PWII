@@ -15,12 +15,7 @@ CREATE TABLE CATEGORIAS (
         DESCRICAO VARCHAR(200) 
         );
         
-         INSERT INTO CATEGORIAS (NOME, DESCRICAO) VALUES ('Eletrônicos');
-         INSERT INTO CATEGORIAS (NOME, DESCRICAO) VALUES ('roupas, vestuários, calçados');
-         INSERT INTO CATEGORIAS (NOME, DESCRICAO) VALUES ('alimentos, bebidas');
-         INSERT INTO CATEGORIAS (NOME, DESCRICAO) VALUES ('Utensílios doméstico');
-         INSERT INTO CATEGORIAS (NOME, DESCRICAO) VALUES ('materiais escolares');
-
+        
     CREATE TABLE PRODUTOS (
         ID INT PRIMARY KEY AUTO_INCREMENT,
         DESCRICAO VARCHAR(150) NOT NULL,
