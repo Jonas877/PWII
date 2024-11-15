@@ -8,7 +8,7 @@ if( isset($_GET["pesquisa"]) )
     {
        //Se a variavel estiver vazia executa aqui
        include "conexao.php";
-       $sql = "Select Id, Descricao, Valor, from Categorias order by Id desc";
+       $sql = "Select Id, Nome, Descricao from Categorias order by Id desc";
        $resultado = $conexao->query($sql);
        
        $conexao->close();
@@ -17,9 +17,9 @@ if( isset($_GET["pesquisa"]) )
     {
         //Aqui vai a lógica da pesquisa
         include "conexao.php";
-        $sql = "Select Id, nome, Descricao
+        $sql = "Select Id, Nome, Descricao
                 from Categorias  
-                where Nome like '%$pesquisa%' || Descricao = '$pesquisa'
+                where Nome like '%$pesquisa%'
                 order by Id desc";
         $resultado = $conexao->query($sql);
        
@@ -30,7 +30,7 @@ else
 {
     $pesquisa = "";
     include "conexao.php";
-    $sql = "Select Id, nome, Descricao";
+    $sql = "Select Id, Nome, Descricao from Categorias order by Id desc";
     $resultado = $conexao->query($sql);
    
     $conexao->close();
@@ -60,12 +60,12 @@ else
             <div class="card-body">
                 <div class="row">
                     <div class="col-2">
-                        <a href="novo_produto.php" class="btn btn-success" >
+                        <a href="nova_categoria.php" class="btn btn-success" >
                             Novo Produto
                         </a>
                     </div>
                     <div class="col-8">
-                        <form action="produtos.php" method="get">
+                        <form action="categorias.php" method="get">
                             <div class="input-group mb-3">
                                 <input type="text"
                                         name="pesquisa"
@@ -90,11 +90,8 @@ else
                         <thead>
                             <tr>
                                 <th scope="col">Id</th>
+                                <th scope="col">Nome</th>
                                 <th scope="col">Descrição</th>
-                                <th scope="col">Valor</th>
-                                <th scope="col">Código de barras</th>
-                                <th scope="col">Imagem</th>
-                                <th scope="col"></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -104,12 +101,10 @@ else
                                 while($row = $resultado->fetch_assoc()) {
                                     echo "<tr>";
                                     echo "<td>" . $row["Id"] . "</td>";
+                                    echo "<td>" . $row["Nome"] . "</td>";
                                     echo "<td>" . $row["Descricao"] . "</td>";
-                                    echo "<td>" . $row["Valor"] . "</td>";
-                                    echo "<td>" . $row["Codigo_barras"] . "</td>";
-                                    echo "<td>" . $row["Imagem"] . "</td>";
-                                    echo "<td><a href='editar_produto.php?Id=$row[Id]' class='btn btn-warning' >Editar</a>  ";
-                                    echo "<a href='excluir_produto.php?Id=$row[Id]' class='btn btn-danger'>Excluir</a></td>";
+                                    echo "<td><a href='editar_categoria.php?Id=$row[Id]' class='btn btn-warning' >Editar</a>  ";
+                                    echo "<a href='excluir_categoria.php?Id=$row[Id]' class='btn btn-danger'>Excluir</a></td>";
                                     echo "</tr>";
                                 }
                             } else {

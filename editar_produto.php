@@ -2,19 +2,20 @@
 
 <?php
 
-if( isset($_POST['id']) && !empty($_POST['id']) &&
-    isset($_POST['descricao']) && !empty($_POST['descricao']) &&
-    isset($_POST['valor']) && !empty($_POST['valor']) &&
-    isset($_POST['codigo_barras']) && !empty($_POST['codigo_barras']) 
+if( isset($_POST['Id']) && !empty($_POST['Id']) &&
+    isset($_POST['Descricao']) && !empty($_POST['Descricao']) &&
+    isset($_POST['Valor']) && !empty($_POST['Valor']) &&
+    isset($_POST['Codigo_Barras']) && !empty($_POST['Codigo_Barras']) 
 )
 {
+    
     include "conexao.php";
-    $sql = "UPDATE PRODUTOS SET Descricao = '$_POST[descricao]',
-                                Valor = $_POST[valor],
-                                Codigo_Barras = '$_POST[codigo_barras]',
-                                Categoria_ID = '$_POST[categoria_id]'
-             WHERE Id = $_POST[id]";
-            
+    $sql = "UPDATE PRODUTOS SET Descricao = '$_POST[Descricao]',
+                                Valor = $_POST[Valor],
+                                Codigo_Barras = $_POST[Codigo_Barras],
+                                Categoria_ID = $_POST[Categoria_Id]
+             WHERE Id = $_POST[Id]";
+    echo $sql;        
     $resultado = $conexao->query($sql);
  if($resultado)
  {
@@ -22,17 +23,17 @@ if( isset($_POST['id']) && !empty($_POST['id']) &&
  }  
    else
  {
-     //caso o update de false
+     echo "Resultado negativo";
  }
                              
 }
 
 
-if ( isset($_GET["Id"]) && ! empty( $_GET['Id']) )
+if ( isset($_GET["Id"]) && !empty( $_GET['Id']) )
 {
 
 include "conexao.php";
-$sql = "Select Id, Descricao, Valor, Codigo_Barras, categoria_id  from produtos where Id = $_GET[Id]";
+$sql = "Select Id, Descricao, Valor, Codigo_Barras, Categoria_Id  FROM produtos where Id = $_GET[Id]";
 $resultado = $conexao->query($sql);
 if($resultado)
 {
@@ -51,19 +52,19 @@ if($resultado)
     }
 else
     {
-    header("location: produtos.php?erro=Nenhum registro encontrado");
+    header("location: produto.php?erro=Nenhum registro encontrado");
 
     }
 }
 else
 {
-    header("location: produtos.php?erro=Erro do if do resultado");
+    header("location: produto.php?erro=Erro do if do resultado");
 
 }    
 }
 else
 {
-    header("location: produtos.php?erro=Nenhum id informado");
+    header("location: produto.php?erro=Nenhum id informado");
     
 }
 
@@ -71,13 +72,14 @@ else
 ?>
 
 <form action="editar_produto.php?Id=<?php echo $id; ?>" method="post">
-    <input name="id" value="<?php echo $id ?>" />
-    <input name="descricao" value="<?php echo $descricao ?>" />
-    <input name="valor" value="<?php echo $valor ?>" />
-    <input name="codigo_barras" value="<?php echo $codigo_barras ?>" />
-    <select name="categoria_id">
+    <input name="Id" value="<?php echo $id ?>" />
+    <input name="Descricao" value="<?php echo $descricao ?>" />
+    <input name="Valor" value="<?php echo $valor ?>" />
+    <input name="Codigo_Barras" value="<?php echo $codigo_barras ?>" />
+    <select name="Categoria_Id">
 
 <?php
+
 
        $sql_categorias = "Select Id, Nome from Categorias";
        $resultado_categoria = $conexao->query($sql_categorias);
@@ -87,9 +89,9 @@ else
            {
                if($categoria_id == $row[Id])
                {
-                echo "<option selected value='$row[id]'> $row[Nome] </option>";
+                echo "<option selected value='$row[Id]'> $row[Nome] </option>";
                }
-               echo "<option value='$row[id]'> $row[Nome] </option>";
+               echo "<option value='$row[Id]'> $row[Nome] </option>";
            }
        }else{
            echo "<option value='0'> Não tem categoria cadastrada </option>";

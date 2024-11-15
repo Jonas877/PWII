@@ -14,7 +14,6 @@ CREATE TABLE CATEGORIAS (
         NOME VARCHAR (50) NOT NULL,
         DESCRICAO VARCHAR(200) 
         );
-            INSERT INTO 
         
         
         
@@ -39,7 +38,7 @@ CREATE TABLE CATEGORIAS (
     ('Relógio Digital - À Prova D\'água', 199.90, '1234567890129', 1),
     ('Lavadora de Roupas - 10Kg', 1599.00, '1234567890130', 1),
     ('Batedeira Elétrica - 5 Velocidades', 399.90, '1234567890131', 1),
-    ('Kit de Maquiagem - 12 Peças', 89.90, '1234567890132', 1,),
+    ('Kit de Maquiagem - 12 Peças', 89.90, '1234567890132', 1),
     ('Cafeteira Elétrica - 12 Xícaras', 299.90, '1234567890133', 1),
     ('Conjunto de Panelas - Antiaderente', 349.90, '1234567890134', 1),
     ('TV LED 50 - Full HD', 2499.00, '1234567890135', 1),
@@ -51,7 +50,18 @@ CREATE TABLE CATEGORIAS (
     ('Secador de Cabelo - 2200W', 199.90, '1234567890141', 1),
     ('Jogo de Lençóis - 150 Fios', 159.90, '1234567890142', 1);
 
+    INSERT INTO categorias (NOME)
+    values
+    ('Eletronico'),
+    ('Domestico'),
+    ('Beleza');
 
+    ALTER TABLE PRODUTOS
+    ADD COLUMN CATEGORIA_ID INT;
+
+    ALTER TABLE PRODUTOS
+    ADD CONSTRAINT FK_PRODUTOS_CATEGORIAS
+    FOREIGN KEY (CATEGORIA_ID) REFERENCES CATEGORIAS ( ID );
 
 
 ";

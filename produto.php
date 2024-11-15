@@ -8,7 +8,7 @@ if( isset($_GET["pesquisa"]) )
     {
        //Se a variavel estiver vazia executa aqui
        include "conexao.php";
-       $sql = "Select Id, Descricao, Valor, Codigo_barras, Imagem from Produtos order by Id desc";
+       $sql = "Select Id, Descricao, Valor, Codigo_Barras, Imagem from Produtos order by Id desc";
        $resultado = $conexao->query($sql);
        
        $conexao->close();
@@ -17,7 +17,7 @@ if( isset($_GET["pesquisa"]) )
     {
         //Aqui vai a lógica da pesquisa
         include "conexao.php";
-        $sql = "Select Id, Descricao, Valor, Codigo_barras, Imagem
+        $sql = "Select Id, Descricao, Valor, Codigo_Barras, Imagem
                 from Produtos  
                 where Descricao like '%$pesquisa%' || Codigo_Barras = '$pesquisa'
                 order by Id desc";
@@ -30,7 +30,7 @@ else
 {
     $pesquisa = "";
     include "conexao.php";
-    $sql = "Select Id, Descricao, Valor, Codigo_barras, Imagem from Produtos order by Id desc";
+    $sql = "Select Id, Descricao, Valor, Codigo_Barras, Imagem from Produtos order by Id desc";
     $resultado = $conexao->query($sql);
    
     $conexao->close();
@@ -65,7 +65,7 @@ else
                         </a>
                     </div>
                     <div class="col-8">
-                        <form action="produtos.php" method="get">
+                        <form action="produto.php" method="get">
                             <div class="input-group mb-3">
                                 <input type="text"
                                         name="pesquisa"
@@ -106,7 +106,7 @@ else
                                     echo "<td>" . $row["Id"] . "</td>";
                                     echo "<td>" . $row["Descricao"] . "</td>";
                                     echo "<td>" . $row["Valor"] . "</td>";
-                                    echo "<td>" . $row["Codigo_barras"] . "</td>";
+                                    echo "<td>" . $row["Codigo_Barras"] . "</td>";
                                     echo "<td>" . $row["Imagem"] . "</td>";
                                     echo "<td><a href='editar_produto.php?Id=$row[Id]' class='btn btn-warning' >Editar</a>  ";
                                     echo "<a href='excluir_produto.php?Id=$row[Id]' class='btn btn-danger'>Excluir</a></td>";
