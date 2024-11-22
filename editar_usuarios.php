@@ -6,7 +6,7 @@ if(  isset($_POST['id']) && !empty($_POST['id']) &&
 )
 {
     include "conexao.php";
-    $sql = "UPDATE categorias SET Nome = '$_POST[nome]'
+    $sql = "UPDATE usuarios SET Nome = '$_POST[nome]'
             WHERE Id = $_POST[id]";
      
      echo $sql;
@@ -26,7 +26,7 @@ if(  isset($_POST['id']) && !empty($_POST['id']) &&
 if ( isset($_GET["Id"]) && !empty( $_GET['Id'] )   )  
 {
     include "conexao.php";
-    $sql = "Select Id, Nome from categorias where Id = $_GET[Id]";
+    $sql = "Select Id, Nome, senha from usuarios where Id = $_GET[Id]";
     $resultado = $conexao->query($sql);
     if($resultado)
     {
@@ -40,24 +40,24 @@ if ( isset($_GET["Id"]) && !empty( $_GET['Id'] )   )
         }
         else
         {
-            header("location: categorias.php?erro=Nenhum registro encontrado");
+            header("location: usuarios.php?erro=Nenhum registro encontrado");
         }
     }
     else
     {
-        header("location: categorias.php?erro=Erro do if do resultado");
+        header("location: usuarios.php?erro=Erro do if do resultado");
     }
 }
 else
 {
-    header("location: categorias.php?erro=Nenhum id informado");
+    header("location: usuarios.php?erro=Nenhum id informado");
 }
 
 
 
 ?>
 
-<form action="editar_categorias.php?Id=<?php echo $id; ?>" method="post">
+<form action="editar_usuarios.php?Id=<?php echo $id; ?>" method="post">
     <input name="id" value="<?php echo $id ?>" />
     <input name="nome" value="<?php echo $nome ?>" />
     <button type="submit" >

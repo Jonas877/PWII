@@ -55,13 +55,13 @@ else
     <div class="col-12">
         <div class="card">
             <div class="card-header">
-                Lista de Produtos
+                Lista de Categorias
             </div>
             <div class="card-body">
                 <div class="row">
                     <div class="col-2">
                         <a href="nova_categoria.php" class="btn btn-success" >
-                            Novo Produto
+                            Nova Categoria
                         </a>
                     </div>
                     <div class="col-8">

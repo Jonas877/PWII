@@ -11,7 +11,7 @@
                     </div>";
         } else {
             include "conexao.php";            
-            $query = "INSERT INTO categorias (Nome) VALUES ('$Nome')";
+            $query = "INSERT INTO usuario (Nome) VALUES ('$Nome')";
 
             $resultado = $conexao->query($query);
 
@@ -37,10 +37,10 @@
     <div class="col-4">
         <div class="card">
             <div class="card-header">
-                Cadastrar nova categoria
+                Cadastrar novo usuário
             </div>
             <div class="card-body">
-                <form action="nova_categoria.php" method="post">
+                <form action="novo_usuario.php" method="post">
                     <label>Nome</label>
                     <input class="form-control" type="text" name="nome" value="<?php echo isset($Nome) ? $Nome : ''; ?>" />
                     <br>

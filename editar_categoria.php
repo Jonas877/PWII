@@ -57,7 +57,7 @@ else
 
 ?>
 
-<form action="editar_categorias.php?Id=<?php echo $id; ?>" method="post">
+<form action="editar_categoria.php?Id=<?php echo $id; ?>" method="post">
     <input name="id" value="<?php echo $id ?>" />
     <input name="nome" value="<?php echo $nome ?>" />
     <button type="submit" >

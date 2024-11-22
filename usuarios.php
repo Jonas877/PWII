@@ -8,7 +8,7 @@ if( isset($_GET["pesquisa"]) )
     {
        //Se a variavel estiver vazia executa aqui
        include "conexao.php";
-       $sql = "Select Id, Descricao, Valor, Codigo_barras, Imagem from Produtos order by Id desc";
+       $sql = "Select Id, Nome, Senha FROM usuarios order by Id desc";
        $resultado = $conexao->query($sql);
        
        $conexao->close();
@@ -17,9 +17,9 @@ if( isset($_GET["pesquisa"]) )
     {
         //Aqui vai a lógica da pesquisa
         include "conexao.php";
-        $sql = "Select Id, Descricao, Valor, Codigo_barras, Imagem
-                from Produtos  
-                where Descricao like '%$pesquisa%' || Codigo_Barras = '$pesquisa'
+        $sql = "Select Id, nome, senha
+                from usuarios  
+                where nome like '%$pesquisa%' 
                 order by Id desc";
         $resultado = $conexao->query($sql);
        
@@ -30,7 +30,7 @@ else
 {
     $pesquisa = "";
     include "conexao.php";
-    $sql = "Select Id, Descricao, Valor, Codigo_barras, Imagem from Produtos order by Id desc";
+    $sql = "Select Id, nome, senha from usuarios order by Id desc";
     $resultado = $conexao->query($sql);
    
     $conexao->close();
@@ -55,17 +55,17 @@ else
     <div class="col-12">
         <div class="card">
             <div class="card-header">
-                Lista de Produtos
+                Lista de Usuários
             </div>
             <div class="card-body">
                 <div class="row">
                     <div class="col-2">
-                        <a href="novo_produto.php" class="btn btn-success" >
-                            Novo Produto
+                        <a href="novo_usuario.php" class="btn btn-success" >
+                            Novo Usuário
                         </a>
                     </div>
                     <div class="col-8">
-                        <form action="produtos.php" method="get">
+                        <form action="usuarios.php" method="get">
                             <div class="input-group mb-3">
                                 <input type="text"
                                         name="pesquisa"
@@ -90,41 +90,46 @@ else
                         <thead>
                             <tr>
                                 <th scope="col">Id</th>
-                                <th scope="col">Descrição</th>
-                                <th scope="col">Valor</th>
-                                <th scope="col">Código de barras</th>
-                                <th scope="col">Imagem</th>
+                                <th scope="col">Nome dos Usuários</th>
+                                <th scope="col">Senha dos usuários</th>
+
                                 <th scope="col"></th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php
                            
-                            if ($resultado->num_rows > 0) {
-                                while($row = $resultado->fetch_assoc()) {
-                                    echo "<tr>";
-                                    echo "<td>" . $row["Id"] . "</td>";
-                                    echo "<td>" . $row["Descricao"] . "</td>";
-                                    echo "<td>" . $row["Valor"] . "</td>";
-                                    echo "<td>" . $row["Codigo_barras"] . "</td>";
-                                    echo "<td>" . $row["Imagem"] . "</td>";
-                                    echo "<td><a href='editar_produto.php?Id=$row[Id]' class='btn btn-warning' >Editar</a>  ";
-                                    echo "<a href='excluir_produto.php?Id=$row[Id]' class='btn btn-danger'>Excluir</a></td>";
-                                    echo "</tr>";
+                           if ($resultado->num_rows > 0) {
+                            while($row = $resultado->fetch_assoc()) {
+                                echo "<tr>";
+                                echo "<td>" . $row["Id"] . "</td>";
+                                echo "<td>" . $row["Login"] . "</td>";
+                                echo "<td>" . $row["senha"] . "</td>";
+                                
+                                echo "<td><a href='editar_usuarios.php?Id=$row[Id]' class='btn btn-warning' >Editar</a>  ";
+                                echo "<a href='excluir_usuarios.php?Id=$row[Id]' class='btn btn-danger'>Excluir</a> ";
+                                if($row["Ativo"])
+                                {
+                                    echo "<a href='desativar_usuario.php?Id=$row[Id]' class='btn btn-danger'>Desativar</a>  ";   
+                                }else{
+                                    echo "<a href='ativar_usuario.php?Id=$row[Id]' class='btn btn-success'>Ativar</a>  ";
                                 }
-                            } else {
-                                echo "<tr><td colspan='3'>Nenhum registro encontrado</td></tr>";
+                                echo "<a href='permissoes.php?id_usuario=$row[Id]' class='btn btn-primary'>Permissões</a></td>";
+                                echo "</tr>";
                             }
-                            ?>
-                                                   
-                        </tbody>
-                        </table>
-                    </div>
+                        } else {
+                            echo "<tr><td colspan='4'>Nenhum registro encontrado</td></tr>";
+                        }
+                        ?>
+                                                
+                    </tbody>
+                    </table>
                 </div>
- 
             </div>
+
         </div>
     </div>
 </div>
- 
+</div>
+
 <?php include "rodape.php"; ?>
