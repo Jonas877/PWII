@@ -4,11 +4,11 @@ if( !empty($_GET['Id']) && isset( $_GET['Id'] ) )
 {
     //Logica da exclusão
     include 'conexao.php';
-    $sql = "Delete from Produtos where Id = $_GET[Id]";
+    $sql = "Delete from usuarios where Id = $_GET[Id]";
     $resultado = $conexao->query($sql);
     if($resultado)
     {
-        header('location: produtos.php');
+        header('location: usuarios.php');
     }
     else
     {
@@ -18,6 +18,9 @@ if( !empty($_GET['Id']) && isset( $_GET['Id'] ) )
 }
 else
 {
-    header('location: produtos.php');
+    header('location: usuarios.php');
 }
+
+
+
 ?>

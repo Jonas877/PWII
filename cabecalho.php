@@ -70,7 +70,7 @@
             Loja
           </a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="usuario.php">Usuario</a></li>
+            <li><a class="dropdown-item" href="usuarios.php">Usuarios</a></li>
             <li><a class="dropdown-item" href="permissao.php">Permissão</a></li>
             <li><hr class="dropdown-divider"></li>
             <li><a class="dropdown-item" href="categorias.php">Categoria</a></li>

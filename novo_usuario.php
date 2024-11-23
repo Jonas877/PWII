@@ -1,35 +1,48 @@
 
-<?php include "cabecalho.php"; ?>
+<?php include "cabecalho.php"; 
 
-<?php
-    if (isset($_POST["nome"])) {
-        $Nome = trim($_POST["nome"]); 
+if( isset($_POST["Login"])  && isset($_POST["Senha"]) )
+{
 
-        if (empty($Nome)) {
-            echo "<br><div class='alert alert-danger'>
-                    Campo nome não pode estar em branco
-                    </div>";
-        } else {
-            include "conexao.php";            
-            $query = "INSERT INTO usuario (Nome) VALUES ('$Nome')";
-
-            $resultado = $conexao->query($query);
-
-            if ($resultado) {
-                echo "<div class='alert alert-success'>
-                      Salvo no banco com sucesso 
-                      </div>";
-            } else {
-                echo "<div class='alert alert-danger'>
-                      Ocorreu algum erro ao salvar
-                     </div>";
-            }
-        }
+    if( empty($_POST["Login"]) )
+    {
+        echo "<br>
+            <div class='alert alert-danger mt-2'>
+                Campo Login não pode estar vazio
+            </div>";
+    }
+    else if(empty($_POST["Senha"]) )
+    {
+        echo "<br>
+            <div class='alert alert-danger mt-2'>
+                 Campo senha não pode estar vazio
+            </div>";
     }
     else
     {
-        $Nome="";
-    }
+        include "conexao.php";
+        $login = $_POST["Login"];
+        $senha = $_POST["Senha"];
+        $query = "INSERT INTO usuarios (Login, Senha, Ativo) VALUES ( '$_POST[Login]', '$_POST[Senha]' , 1 ) ";
+        $resultado = $conexao->query($query);
+        if($resultado)
+        {
+                // echo "<div class='alert alert-success mt-2'>
+                //          Salvo no banco com sucesso 
+                //       </div>" ;
+                header("location: usuarios.php");
+            }else{
+                echo "<div class='alert alert-danger mt-2'>
+                         Ocorreu algum erro ao salvar
+                      </div>" ;
+            }
+        }
+        $login = "";
+        $senha = "";
+       
+}
+$login = "";
+$senha = "";
 ?>
 <br>
 <div class="row">
@@ -37,19 +50,25 @@
     <div class="col-4">
         <div class="card">
             <div class="card-header">
-                Cadastrar novo usuário
+                Cadastrar novo produto
             </div>
             <div class="card-body">
                 <form action="novo_usuario.php" method="post">
-                    <label>Nome</label>
-                    <input class="form-control" type="text" name="nome" value="<?php echo isset($Nome) ? $Nome : ''; ?>" />
+                    <label>Login</label>
+                    <input class="form-control" type="text" name="Login" value="<?php echo $login; ?>" />
                     <br>
+                    <label>Senha</label>
+                    <input class="form-control" type="password" name="Senha" value="<?php echo $senha; ?>" />
+                    <br>
+                    
                     <button type='submit' class='btn btn-success'>
-                        Enviar os dados
+                        Salvar
                     </button>
                 </form>
             </div>
         </div>    
+
+
     </div>
     <div class="col-4"></div>
 </div>

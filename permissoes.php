@@ -2,10 +2,10 @@
 <?php include "cabecalho.php"; ?>
 <?php include "conexao.php"; ?>
 
-$sql_Permissoes = "select Nome, Id form Permissoes order by Id desc";
+$sql_Permissoes = "select Nome, Id from Permissoes order by Id desc";
 $resultado_permissoes = $conexao->query($sql_Permissoes);
 
-$sql permissoes ="select u.Id, u.Nome, p.Nome, PU.Id form USUARIOS_PERMISSOES PU
+$sql permissoes ="select u.Id, u.Nome, p.Nome, PU.Id from USUARIOS_PERMISSOES PU
                     inner join Usuario u on (u.Id = PU.USUARIO_ID)
                     inner join Permissao p on (p.Id = PU.PERMISSAO_ID)";
 
